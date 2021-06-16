@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>A Simple Markdown Previewer</title>
+    <script src ="js/marked.js"></script>
+    <script>
+        function updatePreview(){
+            marked
+            let previewElement = document.getElementById('preview');
+            let editorValue = document.getElementById('editor').value;
+            let markedUpHTML = marked(editorValue);
+            previewElement.innerHTML = markedUpHTML;
+        }
+
+        function setDefault(){
+
+let defaultText = `
+
+# Markdown syntax guide
+
+## Headers
+
+# This is a Heading h1
+## This is a Heading h2 
+###### This is a Heading h6
+
+## Emphasis
+
+*This text will be italic*  
+_This will also be italic_
+
+**This text will be bold**  
+__This will also be bold__
+
+_You **can** combine them_
+
+## Lists
+
+### Unordered
+
+* Item 1
+* Item 2
+* Item 2a
+* Item 2b
+
+### Ordered
+
+1. Item 1
+1. Item 2
+1. Item 3
+    1. Item 3a
+    1. Item 3b
+
+## Images
+
+![This is a alt text.](images/sample.png "This is a sample image.")
+
+## Links
+
+You may be using [Markdown Live Preview](https://markdownlivepreview.com/).
+
+## Blockquotes
+
+> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
+>
+>> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
+
+## Tables
+
+| Left columns  | Right columns |
+| ------------- |:-------------:|
+| left foo      | right foo     |
+| left bar      | right bar     |
+| left baz      | right baz     |
+
+## Blocks of code
+
+\`\`\`
+let message = 'Hello world';
+alert(message);
+\`\`\`
+
+## Inline code
+
+This web site is using \`markedjs/marked\`.
+
+`;
+            let editorField = document.getElementById('editor');
+            let previewElement = document.getElementById('preview');
+            editorField.value = defaultText;
+            previewElement.innerHTML = marked(defaultText);
+            
+        }
+    </script>
+</head>
+<body onload="setDefault()" style="background-color: #4062BB !important;">
+    <div class="container-fluid">     
+        <div class="row">
+            <div class="col text-center text-white" style="background-color: #52489C !important;">
+                <h1 class="text-white text-center p-3">Markdown Previewer</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 bg-secondary d-flex flex-column" style="background-color: #4062BB !important;">
+                <h2 class="text-white text-center my-3" >Editor</h2>
+                <div class="form-group flex-grow-1 d-flex flex-column">
+                    <textarea name="" id="editor" cols="30" rows="10" onkeyup="updatePreview()" class="form-control flex-grow-1"></textarea>
+                </div>
+            </div>
+            <div class="col-6" style="background-color: #4062BB !important;">
+                <h2 class="text-white text-center my-3">Preview</h2>
+                <div id="preview" class='text-white p-3 border-start'></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>
